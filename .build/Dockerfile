@@ -131,7 +131,8 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 RUN conda install --quiet --yes \
     'notebook=6.0.3' \
     'jupyterhub=1.1.0' \
-    'jupyterlab=2.1.3' && \
+    'jupyterlab>=2.2,<3.0.0a0' \
+    jupyter-lsp python-language-server && \
     conda clean --all -f -y && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
@@ -147,6 +148,7 @@ ENTRYPOINT ["tini", "-g", "--"]
 CMD ["start-notebook.sh"]
 
 # Copy local files as late as possible to avoid cache busting
+COPY pycodestyle $HOME/.config/pycodestyle
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
 COPY jupyter_notebook_config.py /etc/jupyter/
 
@@ -259,6 +261,7 @@ RUN conda install --quiet --yes \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^2.0.0 --no-build && \
     jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
     jupyter labextension install jupyter-matplotlib@^0.7.2 --no-build && \
+    jupyter labextension install @krassowski/jupyterlab-lsp --no-build && \
     jupyter lab build -y && \
     jupyter lab clean -y && \
     npm cache clean --force && \
@@ -321,7 +324,7 @@ LABEL authors="Christoph Schranz <christoph.schranz@salzburgresearch.at>, Mathem
 
 USER root
 
-RUN pip install --no-cache-dir ipyleaflet plotly==4.8.* "ipywidgets>=7.5"
+RUN pip install --no-cache-dir ipyleaflet plotly==4.8.* "ipywidgets>=7.5" nbqa black
 
 # Install important packages and Graphviz
 RUN set -ex \
