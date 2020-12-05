@@ -3,5 +3,5 @@
 __all__ = ['example_func']
 
 # Cell
-def example_func():
+def example_func(hi="yo"):
     pass
