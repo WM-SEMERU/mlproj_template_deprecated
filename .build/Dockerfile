@@ -234,6 +234,8 @@ RUN conda install --quiet --yes \
     'ipywidgets=7.5.*' \
     'ipympl=0.5.*'\
     'matplotlib-base=3.2.*' \
+    'nbqa=0.5.4' \
+    'black=20.8b1' \
     # numba update to 0.49 fails resolving deps.
     'numba=0.48.*' \
     'numexpr=2.7.*' \
@@ -324,7 +326,7 @@ LABEL authors="Christoph Schranz <christoph.schranz@salzburgresearch.at>, Mathem
 
 USER root
 
-RUN pip install --no-cache-dir ipyleaflet plotly==4.8.* "ipywidgets>=7.5" nbqa black
+RUN pip install --no-cache-dir ipyleaflet plotly==4.8.* "ipywidgets>=7.5"
 
 # Install important packages and Graphviz
 RUN set -ex \
