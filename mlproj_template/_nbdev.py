@@ -2,9 +2,14 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"example_func": "00_core.ipynb"}
+index = {"example_func": "00_core.ipynb",
+         "process_data": "01_cli.ipynb",
+         "train": "01_cli.ipynb",
+         "evaluate": "01_cli.ipynb",
+         "reproduce": "01_cli.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "cli.py"]
 
 doc_url = "https://wm-semeru.github.io/mlproj_template/"
 
