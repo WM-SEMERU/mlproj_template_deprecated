@@ -300,7 +300,9 @@ LABEL maintainer="Christoph Schranz <christoph.schranz@salzburgresearch.at>"
 # installation via conda leads to errors in version 4.8.2
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir "tensorflow==2.3.1" && \
-    pip install --no-cache-dir keras
+    pip install --no-cache-dir keras && \
+    pip install --no-cache-dir nbdev && \
+    pip install --no-cache-dir pre-commit
 
 # Install PyTorch with dependencies
 RUN conda install --quiet --yes \
